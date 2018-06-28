@@ -36,8 +36,8 @@ const (
 create index processing_instance_instance_id_last_update_time_index
   on processing_instance (instance_id, last_update_time);`
 	DB_UPDATE_PROCESSING_INSTANCE_QUERY_STRING = "INSERT OR REPLACE INTO processing_instance (instance_id, last_update_time) VALUES (?, cast(strftime('%s', 'now') as INT))"
-	DB_QUERY_HANDLING_INSTANCE_QUERY_STRING    = `SELECT last_update_time FROM processing_instance WHERE instance_id=? AND cast(strftime('%s', 'now') AS INT) - last_update_time > ?`
-	DB_QUERY_UNFINISHED_INSTANCE_QUERY_STRING  = `SELECT instance_id FROM processing_instance`
+	DB_QUERY_HANDLING_INSTANCE_QUERY_STRING    = "SELECT last_update_time FROM processing_instance WHERE instance_id=? AND cast(strftime('%s', 'now') AS INT) - last_update_time > ?"
+	DB_QUERY_UNFINISHED_INSTANCE_QUERY_STRING  = "SELECT instance_id FROM processing_instance"
 	DB_DELETE_PROCESSED_INSTANCE_QUERY_STRING  = "DELETE FROM processing_instance WHERE instance_id = ?"
 )
 
