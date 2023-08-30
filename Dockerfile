@@ -1,9 +1,12 @@
-FROM golang:1.9
+FROM golang:1.20-bullseye as build
 
-WORKDIR /go/src/app
-COPY ec2_degraded_instances_restarter.go .
+WORKDIR /go/src/github.com/alantang888/ec2_degraded_instances_restarter
+COPY . .
+RUN go mod download
+WORKDIR /go/src/github.com/alantang888/ec2_degraded_instances_restarter
+RUN go build -o /go/bin/app
 
-RUN go get -d -v ./...
-RUN go install -v ./...
+FROM gcr.io/distroless/base
+COPY --from=build /go/bin/app /
 
-CMD ["app"]
+CMD ["/app"]

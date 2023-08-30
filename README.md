@@ -11,6 +11,8 @@ You need to config AWS access token to environment variable:
 - AWS_SECRET_ACCESS_KEY
 - AWS_REGION
 
+Or [use role and service account on EKS](https://docs.aws.amazon.com/eks/latest/userguide/associate-service-account-role.html)
+
 #### Also you can specify SQLite DB file location
 Set environment variable `DB_LOC`.
 
